@@ -24,6 +24,8 @@ import { ProductData, VisibilityScore, OptimizedProduct } from '@/lib/types'
 import ProductForm from '@/components/ProductForm'
 import ScoreResults from '@/components/ScoreResults'
 import OptimizerResults from '@/components/OptimizerResults'
+import ProtocolDashboard from '@/components/ProtocolDashboard'
+import AIMonitoringDashboard from '@/components/AIMonitoringDashboard'
 
 const sidebarItems = [
   { label: 'Overview', icon: LayoutDashboard },
@@ -392,11 +394,18 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between border-b border-white/10 px-6 lg:px-8 py-4">
           <div>
             <h1 className="text-xl font-semibold text-white">
-              {activeNav === 'Score Product' ? 'Score & Optimize' : 'Welcome back'}
+              {activeNav === 'Score Product' ? 'Score & Optimize'
+                : activeNav === 'Protocol Status' ? 'Protocol Readiness'
+                : activeNav === 'AI Monitoring' ? 'AI Agent Monitoring'
+                : 'Welcome back'}
             </h1>
             <p className="text-sm text-gray-400">
               {activeNav === 'Score Product'
                 ? 'Audit your product and optimize it for AI agent visibility.'
+                : activeNav === 'Protocol Status'
+                ? 'Check compliance with Google UCP, OpenAI ACP, and Amazon Buy for Me.'
+                : activeNav === 'AI Monitoring'
+                ? 'Track your presence across AI shopping platforms.'
                 : "Here's how your products are performing with AI agents."}
             </p>
           </div>
@@ -414,7 +423,9 @@ export default function DashboardPage() {
         <div className="px-6 lg:px-8 py-6">
           {activeNav === 'Overview' && renderOverview()}
           {activeNav === 'Score Product' && renderScoreProduct()}
-          {!['Overview', 'Score Product'].includes(activeNav) && (
+          {activeNav === 'Protocol Status' && <ProtocolDashboard />}
+          {activeNav === 'AI Monitoring' && <AIMonitoringDashboard />}
+          {!['Overview', 'Score Product', 'Protocol Status', 'AI Monitoring'].includes(activeNav) && (
             <div className="flex items-center justify-center h-64">
               <div className="text-center glass rounded-2xl p-12">
                 <Package size={48} className="text-gray-600 mx-auto mb-4" />

@@ -1,61 +1,49 @@
-import Link from 'next/link';
-
-const stats = [
-  { value: '33M+', label: 'Small Businesses' },
-  { value: '$1T', label: 'Projected AI Commerce by 2030' },
-  { value: '900M', label: 'Weekly ChatGPT Users' },
-];
+import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      {/* Animated gradient orb */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-[600px] w-[600px] rounded-full bg-gradient-to-br from-blue-600/30 via-cyan-500/20 to-emerald-500/10 blur-[120px] animate-pulse" />
-      </div>
-      <div className="pointer-events-none absolute top-20 right-0">
-        <div className="h-[300px] w-[300px] rounded-full bg-blue-500/15 blur-[100px]" />
-      </div>
+    <section className="pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <div className="mx-auto max-w-6xl px-6 text-center">
+        <div className="mx-auto max-w-3xl">
+          <p className="text-sm font-medium text-nimbus-600 mb-4">For Shopify, Etsy, and DTC brands</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl leading-[1.1]">
+            Make your products visible to AI shopping agents
+          </h1>
+          <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+            ChatGPT, Gemini, and Perplexity are the new shoppers. If they can&apos;t read your
+            product data, you don&apos;t exist. Nimbus audits, optimizes, and monitors your
+            listings in under 5 minutes.
+          </p>
+        </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        {/* Headline */}
-        <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-          Make Your Products{' '}
-          <span className="gradient-text">Visible to AI Shopping Agents</span>
-        </h1>
-
-        {/* Subheadline */}
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
-          ChatGPT, Gemini, Alexa+, and Perplexity are the new shoppers. If they can&apos;t read
-          your product data, you don&apos;t exist. Nimbus fixes that in under 5 minutes.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/dashboard"
-            className="rounded-xl bg-gradient-to-r from-nimbus-600 to-nimbus-700 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105"
+            className="rounded-lg bg-gray-900 px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
           >
-            Start Free Audit
+            Start free audit
           </Link>
           <Link
             href="#features"
-            className="rounded-xl border border-white/20 px-8 py-3.5 text-base font-semibold text-gray-200 hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+            className="rounded-lg border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            See How It Works
+            See how it works
           </Link>
         </div>
 
-        {/* Stats Bar */}
-        <div className="mx-auto mt-16 grid max-w-3xl grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
-          {stats.map((stat) => (
+        <div className="mx-auto mt-20 grid max-w-2xl grid-cols-3 gap-8 border-t border-gray-100 pt-10">
+          {[
+            { value: '33M+', label: 'Small businesses in the US' },
+            { value: '$1T', label: 'Projected AI commerce by 2030' },
+            { value: '900M', label: 'Weekly ChatGPT users' },
+          ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl font-bold gradient-text sm:text-4xl">{stat.value}</p>
-              <p className="mt-1 text-sm text-gray-400">{stat.label}</p>
+              <p className="text-2xl font-semibold text-gray-900">{stat.value}</p>
+              <p className="mt-1 text-xs text-gray-400">{stat.label}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -136,13 +136,13 @@ const SAMPLE_CONFIGS: { label: string; data: Partial<StoreConfig> }[] = [
 function statusConfig(status: string) {
   switch (status) {
     case 'compliant':
-      return { color: 'text-emerald-400', bg: 'bg-emerald-400/10', border: 'border-emerald-400/20', icon: CheckCircle, label: 'Compliant' }
+      return { color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-200', icon: CheckCircle, label: 'Compliant' }
     case 'partial':
-      return { color: 'text-yellow-400', bg: 'bg-yellow-400/10', border: 'border-yellow-400/20', icon: AlertTriangle, label: 'Partial' }
+      return { color: 'text-amber-700', bg: 'bg-amber-50', border: 'border-amber-200', icon: AlertTriangle, label: 'Partial' }
     case 'action_required':
-      return { color: 'text-orange-400', bg: 'bg-orange-400/10', border: 'border-orange-400/20', icon: AlertTriangle, label: 'Action Required' }
+      return { color: 'text-orange-700', bg: 'bg-orange-50', border: 'border-orange-200', icon: AlertTriangle, label: 'Action Required' }
     default:
-      return { color: 'text-red-400', bg: 'bg-red-400/10', border: 'border-red-400/20', icon: XCircle, label: 'Not Started' }
+      return { color: 'text-red-700', bg: 'bg-red-50', border: 'border-red-200', icon: XCircle, label: 'Not Started' }
   }
 }
 
@@ -185,23 +185,23 @@ export default function ProtocolDashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-white mb-2">Protocol Readiness Dashboard</h2>
-        <p className="text-gray-400">Check your store&apos;s compliance with Google UCP, OpenAI ACP, and Amazon Buy for Me.</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Protocol Readiness Dashboard</h2>
+        <p className="text-gray-600">Check your store&apos;s compliance with Google UCP, OpenAI ACP, and Amazon Buy for Me.</p>
       </div>
 
       {/* Form */}
       {showForm && (
-        <div className="glass rounded-xl p-6 space-y-5">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-5">
           {/* Samples */}
           <div>
-            <label className="block text-sm text-gray-400 mb-2">Try a sample configuration:</label>
+            <label className="block text-sm text-gray-600 mb-2">Try a sample configuration:</label>
             <div className="flex flex-wrap gap-2">
               {SAMPLE_CONFIGS.map((sample) => (
                 <button
                   key={sample.label}
                   type="button"
                   onClick={() => loadSample(sample.data)}
-                  className="text-xs px-3 py-1.5 rounded-full glass glass-hover text-gray-300"
+                  className="border border-gray-200 hover:bg-gray-50 text-gray-600 text-xs px-3 py-1.5 rounded-full"
                 >
                   {sample.label}
                 </button>
@@ -212,58 +212,58 @@ export default function ProtocolDashboard() {
           {/* Basic info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Store URL *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Store URL *</label>
               <input
                 type="url"
                 value={config.storeUrl}
                 onChange={e => update('storeUrl', e.target.value)}
                 placeholder="https://yourstore.com"
-                className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Platform</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Platform</label>
               <select
                 value={config.platform}
                 onChange={e => update('platform', e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-200 text-gray-900 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               >
-                <option value="" className="bg-gray-900">Select platform</option>
-                <option value="shopify" className="bg-gray-900">Shopify</option>
-                <option value="etsy" className="bg-gray-900">Etsy</option>
-                <option value="woocommerce" className="bg-gray-900">WooCommerce</option>
-                <option value="squarespace" className="bg-gray-900">Squarespace</option>
-                <option value="custom" className="bg-gray-900">Custom / Other</option>
+                <option value="" className="bg-white">Select platform</option>
+                <option value="shopify" className="bg-white">Shopify</option>
+                <option value="etsy" className="bg-white">Etsy</option>
+                <option value="woocommerce" className="bg-white">WooCommerce</option>
+                <option value="squarespace" className="bg-white">Squarespace</option>
+                <option value="custom" className="bg-white">Custom / Other</option>
               </select>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Total Products</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Total Products</label>
               <input
                 type="number"
                 value={config.totalProducts || ''}
                 onChange={e => update('totalProducts', parseInt(e.target.value) || 0)}
                 placeholder="50"
-                className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Approved Products (Google)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Approved Products (Google)</label>
               <input
                 type="number"
                 value={config.approvedProducts || ''}
                 onChange={e => update('approvedProducts', parseInt(e.target.value) || 0)}
                 placeholder="45"
-                className="w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2.5 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
 
           {/* Checklist toggles */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-3">Current Setup</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Current Setup</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {([
                 ['hasSSL', 'SSL Certificate (HTTPS)'],
@@ -286,11 +286,11 @@ export default function ProtocolDashboard() {
                       onChange={e => update(field, e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-blue-500 peer-checked:border-blue-500 transition-all flex items-center justify-center">
+                    <div className="w-5 h-5 rounded border border-gray-300 bg-white peer-checked:bg-nimbus-600 peer-checked:border-nimbus-600 transition-all flex items-center justify-center">
                       {config[field] && <CheckCircle size={14} className="text-white" />}
                     </div>
                   </div>
-                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{label}</span>
+                  <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">{label}</span>
                 </label>
               ))}
             </div>
@@ -299,7 +299,7 @@ export default function ProtocolDashboard() {
           <button
             onClick={handleCheck}
             disabled={loading || !config.storeUrl}
-            className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 px-6 rounded-lg bg-gray-900 text-white font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Checking Compliance...' : 'Check Protocol Readiness'}
           </button>
@@ -310,14 +310,14 @@ export default function ProtocolDashboard() {
       {results && (
         <div className="space-y-6">
           {/* Overall */}
-          <div className="glass rounded-xl p-6 text-center">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <ShieldCheck size={24} className="text-cyan-400" />
-              <h3 className="text-lg font-semibold text-white">Overall Protocol Readiness</h3>
+              <ShieldCheck size={24} className="text-nimbus-600" />
+              <h3 className="text-lg font-semibold text-gray-900">Overall Protocol Readiness</h3>
             </div>
             <div className="flex items-center justify-center gap-8 mb-4">
               <div>
-                <span className={`text-5xl font-bold ${overallScore >= 80 ? 'text-emerald-400' : overallScore >= 50 ? 'text-yellow-400' : 'text-red-400'}`}>
+                <span className={`text-5xl font-bold ${overallScore >= 80 ? 'text-emerald-600' : overallScore >= 50 ? 'text-amber-600' : 'text-red-500'}`}>
                   {overallScore}%
                 </span>
               </div>
@@ -341,7 +341,7 @@ export default function ProtocolDashboard() {
             </div>
             <button
               onClick={() => setShowForm(true)}
-              className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-sm text-nimbus-600 hover:text-nimbus-700 transition-colors"
             >
               Recheck with different settings
             </button>
@@ -358,39 +358,39 @@ export default function ProtocolDashboard() {
             const totalOptional = result.checks.filter(c => !c.required).length
 
             return (
-              <div key={result.protocol} className="glass rounded-xl overflow-hidden">
+              <div key={result.protocol} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
                 {/* Header */}
                 <button
                   onClick={() => setExpandedProtocol(isExpanded ? null : result.protocol)}
-                  className="w-full flex items-center justify-between px-6 py-5 hover:bg-white/5 transition-colors"
+                  className="w-full flex items-center justify-between px-6 py-5 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center gap-4">
                     <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${cfg.bg} border ${cfg.border}`}>
                       <Icon size={24} className={cfg.color} />
                     </div>
                     <div className="text-left">
-                      <h3 className="font-semibold text-white">{result.protocol}</h3>
-                      <p className="text-sm text-gray-400">{result.description}</p>
+                      <h3 className="font-semibold text-gray-900">{result.protocol}</h3>
+                      <p className="text-sm text-gray-600">{result.description}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div className={`text-2xl font-bold ${cfg.color}`}>{result.score}%</div>
-                      <div className="text-xs text-gray-500">{passedRequired}/{totalRequired} required</div>
+                      <div className="text-xs text-gray-400">{passedRequired}/{totalRequired} required</div>
                     </div>
                     {isExpanded ? <ChevronUp size={20} className="text-gray-400" /> : <ChevronDown size={20} className="text-gray-400" />}
                   </div>
                 </button>
 
                 {isExpanded && (
-                  <div className="border-t border-white/10 px-6 py-5 space-y-4">
+                  <div className="border-t border-gray-100 px-6 py-5 space-y-4">
                     {/* Next step banner */}
-                    <div className="flex items-start gap-3 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                      <ArrowRight size={18} className="text-blue-400 mt-0.5 shrink-0" />
+                    <div className="flex items-start gap-3 p-4 rounded-lg bg-nimbus-50 border border-nimbus-200">
+                      <ArrowRight size={18} className="text-nimbus-700 mt-0.5 shrink-0" />
                       <div>
-                        <p className="text-sm font-medium text-blue-400">Next Step</p>
-                        <p className="text-sm text-gray-300">{result.nextStep}</p>
-                        <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                        <p className="text-sm font-medium text-nimbus-700">Next Step</p>
+                        <p className="text-sm text-gray-700">{result.nextStep}</p>
+                        <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
                           <Clock size={12} />
                           Estimated time to full compliance: {result.estimatedTimeToComplete}
                         </p>
@@ -399,25 +399,25 @@ export default function ProtocolDashboard() {
 
                     {/* Required checks */}
                     <div>
-                      <h4 className="text-sm font-medium text-gray-400 mb-2">Required ({passedRequired}/{totalRequired})</h4>
+                      <h4 className="text-sm font-medium text-gray-600 mb-2">Required ({passedRequired}/{totalRequired})</h4>
                       <div className="space-y-2">
                         {result.checks.filter(c => c.required).map((check) => (
-                          <div key={check.name} className={`flex items-start gap-3 p-3 rounded-lg ${check.passed ? 'bg-emerald-400/5' : 'bg-red-400/5'}`}>
+                          <div key={check.name} className={`flex items-start gap-3 p-3 rounded-lg ${check.passed ? 'bg-emerald-50' : 'bg-red-50'}`}>
                             {check.passed ? (
-                              <CheckCircle size={18} className="text-emerald-400 mt-0.5 shrink-0" />
+                              <CheckCircle size={18} className="text-emerald-600 mt-0.5 shrink-0" />
                             ) : (
-                              <XCircle size={18} className="text-red-400 mt-0.5 shrink-0" />
+                              <XCircle size={18} className="text-red-500 mt-0.5 shrink-0" />
                             )}
                             <div className="flex-1">
-                              <p className={`text-sm font-medium ${check.passed ? 'text-emerald-400' : 'text-white'}`}>
+                              <p className={`text-sm font-medium ${check.passed ? 'text-emerald-700' : 'text-gray-900'}`}>
                                 {check.name}
                               </p>
-                              <p className="text-xs text-gray-400 mt-0.5">{check.description}</p>
+                              <p className="text-xs text-gray-500 mt-0.5">{check.description}</p>
                               {!check.passed && (
-                                <div className="mt-2 p-2 rounded bg-white/5">
-                                  <p className="text-xs text-yellow-400 font-medium">How to fix:</p>
-                                  <p className="text-xs text-gray-300 mt-0.5">{check.fixInstructions}</p>
-                                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                <div className="mt-2 p-2 rounded bg-gray-50 border border-gray-100">
+                                  <p className="text-xs text-amber-600 font-medium">How to fix:</p>
+                                  <p className="text-xs text-gray-700 mt-0.5">{check.fixInstructions}</p>
+                                  <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
                                     <Clock size={10} /> {check.estimatedTime}
                                   </p>
                                 </div>
@@ -431,22 +431,22 @@ export default function ProtocolDashboard() {
                     {/* Optional checks */}
                     {totalOptional > 0 && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-400 mb-2">Recommended ({passedOptional}/{totalOptional})</h4>
+                        <h4 className="text-sm font-medium text-gray-600 mb-2">Recommended ({passedOptional}/{totalOptional})</h4>
                         <div className="space-y-2">
                           {result.checks.filter(c => !c.required).map((check) => (
-                            <div key={check.name} className={`flex items-start gap-3 p-3 rounded-lg ${check.passed ? 'bg-emerald-400/5' : 'bg-white/5'}`}>
+                            <div key={check.name} className={`flex items-start gap-3 p-3 rounded-lg ${check.passed ? 'bg-emerald-50' : 'bg-gray-50'}`}>
                               {check.passed ? (
-                                <CheckCircle size={18} className="text-emerald-400 mt-0.5 shrink-0" />
+                                <CheckCircle size={18} className="text-emerald-600 mt-0.5 shrink-0" />
                               ) : (
-                                <AlertTriangle size={18} className="text-gray-500 mt-0.5 shrink-0" />
+                                <AlertTriangle size={18} className="text-gray-400 mt-0.5 shrink-0" />
                               )}
                               <div>
-                                <p className={`text-sm ${check.passed ? 'text-emerald-400' : 'text-gray-300'}`}>
+                                <p className={`text-sm ${check.passed ? 'text-emerald-700' : 'text-gray-700'}`}>
                                   {check.name}
                                 </p>
-                                <p className="text-xs text-gray-500 mt-0.5">{check.description}</p>
+                                <p className="text-xs text-gray-400 mt-0.5">{check.description}</p>
                                 {!check.passed && (
-                                  <p className="text-xs text-gray-500 mt-1">{check.fixInstructions}</p>
+                                  <p className="text-xs text-gray-400 mt-1">{check.fixInstructions}</p>
                                 )}
                               </div>
                             </div>

@@ -8,56 +8,42 @@ interface ScoreGaugeProps {
 
 export default function ScoreGauge({ score, size = 'md', label }: ScoreGaugeProps) {
   const getColor = (s: number) => {
-    if (s >= 80) return { ring: 'text-emerald-400', bg: 'bg-emerald-400', text: 'text-emerald-400' }
-    if (s >= 55) return { ring: 'text-yellow-400', bg: 'bg-yellow-400', text: 'text-yellow-400' }
-    if (s >= 35) return { ring: 'text-orange-400', bg: 'bg-orange-400', text: 'text-orange-400' }
-    return { ring: 'text-red-400', bg: 'bg-red-400', text: 'text-red-400' }
+    if (s >= 80) return 'text-emerald-600'
+    if (s >= 55) return 'text-amber-600'
+    if (s >= 35) return 'text-orange-500'
+    return 'text-red-500'
   }
 
-  const colors = getColor(score)
+  const getTrack = (s: number) => {
+    if (s >= 80) return 'text-emerald-100'
+    if (s >= 55) return 'text-amber-100'
+    if (s >= 35) return 'text-orange-100'
+    return 'text-red-100'
+  }
+
+  const color = getColor(score)
+  const track = getTrack(score)
 
   const sizeConfig = {
-    sm: { container: 'w-16 h-16', text: 'text-lg', label: 'text-[10px]' },
-    md: { container: 'w-28 h-28', text: 'text-3xl', label: 'text-xs' },
-    lg: { container: 'w-40 h-40', text: 'text-5xl', label: 'text-sm' },
+    sm: { container: 'w-12 h-12', text: 'text-sm font-semibold', label: 'text-[9px]', radius: 20, stroke: 3, viewBox: 48 },
+    md: { container: 'w-24 h-24', text: 'text-2xl font-semibold', label: 'text-[10px]', radius: 42, stroke: 4, viewBox: 96 },
+    lg: { container: 'w-32 h-32', text: 'text-4xl font-semibold', label: 'text-xs', radius: 56, stroke: 5, viewBox: 128 },
   }
 
-  const config = sizeConfig[size]
-  const radius = size === 'sm' ? 28 : size === 'md' ? 50 : 70
-  const circumference = 2 * Math.PI * radius
-  const strokeDashoffset = circumference - (score / 100) * circumference
-  const strokeWidth = size === 'sm' ? 3 : 4
-  const viewBox = size === 'sm' ? 64 : size === 'md' ? 112 : 160
-  const center = viewBox / 2
+  const cfg = sizeConfig[size]
+  const circumference = 2 * Math.PI * cfg.radius
+  const offset = circumference - (score / 100) * circumference
+  const center = cfg.viewBox / 2
 
   return (
-    <div className={`${config.container} relative flex items-center justify-center`}>
-      <svg className="absolute inset-0 -rotate-90" viewBox={`0 0 ${viewBox} ${viewBox}`}>
-        <circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={strokeWidth}
-          className="text-white/10"
-        />
-        <circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          className={`${colors.ring} transition-all duration-1000 ease-out`}
-        />
+    <div className={`${cfg.container} relative flex items-center justify-center`}>
+      <svg className="absolute inset-0 -rotate-90" viewBox={`0 0 ${cfg.viewBox} ${cfg.viewBox}`}>
+        <circle cx={center} cy={center} r={cfg.radius} fill="none" stroke="currentColor" strokeWidth={cfg.stroke} className={track} />
+        <circle cx={center} cy={center} r={cfg.radius} fill="none" stroke="currentColor" strokeWidth={cfg.stroke} strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={offset} className={`${color} transition-all duration-700 ease-out`} />
       </svg>
       <div className="text-center z-10">
-        <span className={`${config.text} font-bold ${colors.text}`}>{score}</span>
-        {label && <p className={`${config.label} text-gray-400 mt-0.5`}>{label}</p>}
+        <span className={`${cfg.text} ${color}`}>{score}</span>
+        {label && <p className={`${cfg.label} text-gray-400`}>{label}</p>}
       </div>
     </div>
   )

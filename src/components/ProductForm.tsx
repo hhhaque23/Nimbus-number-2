@@ -91,7 +91,7 @@ export default function ProductForm({ onSubmit, loading, initialData }: ProductF
               key={sample.label}
               type="button"
               onClick={() => loadSample(sample.data)}
-              className="text-xs px-3 py-1.5 rounded-full glass glass-hover text-gray-300"
+              className="text-xs px-3 py-1.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-600 transition-colors"
             >
               {sample.label}
             </button>
@@ -102,90 +102,90 @@ export default function ProductForm({ onSubmit, loading, initialData }: ProductF
       {/* Required fields */}
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">Product Title *</label>
+          <label className="block text-sm font-medium text-gray-900 mb-1">Product Title *</label>
           <input
             type="text"
             value={product.title}
             onChange={e => update('title', e.target.value)}
             placeholder="e.g., Men's Trail Running Shoe – Blue – Size 10"
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">Product Description *</label>
+          <label className="block text-sm font-medium text-gray-900 mb-1">Product Description *</label>
           <textarea
             value={product.description}
             onChange={e => update('description', e.target.value)}
             placeholder="Describe your product in detail: materials, features, benefits, use cases..."
             rows={4}
-            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-y"
+            className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500 resize-y"
             required
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Price</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Price</label>
             <input
               type="number"
               step="0.01"
               value={product.price || ''}
               onChange={e => update('price', parseFloat(e.target.value) || 0)}
               placeholder="29.99"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Currency</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Currency</label>
             <select
               value={product.currency || ''}
               onChange={e => update('currency', e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             >
-              <option value="" className="bg-gray-900">Select</option>
-              <option value="USD" className="bg-gray-900">USD</option>
-              <option value="EUR" className="bg-gray-900">EUR</option>
-              <option value="GBP" className="bg-gray-900">GBP</option>
-              <option value="CAD" className="bg-gray-900">CAD</option>
-              <option value="AUD" className="bg-gray-900">AUD</option>
+              <option value="">Select</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="CAD">CAD</option>
+              <option value="AUD">AUD</option>
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Availability</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Availability</label>
             <select
               value={product.availability || ''}
               onChange={e => update('availability', e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             >
-              <option value="" className="bg-gray-900">Select</option>
-              <option value="In Stock" className="bg-gray-900">In Stock</option>
-              <option value="Out of Stock" className="bg-gray-900">Out of Stock</option>
-              <option value="Pre-order" className="bg-gray-900">Pre-order</option>
+              <option value="">Select</option>
+              <option value="In Stock">In Stock</option>
+              <option value="Out of Stock">Out of Stock</option>
+              <option value="Pre-order">Pre-order</option>
             </select>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Brand</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Brand</label>
             <input
               type="text"
               value={product.brand || ''}
               onChange={e => update('brand', e.target.value)}
               placeholder="e.g., Nike, Patagonia"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Category</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Category</label>
             <input
               type="text"
               value={product.category || ''}
               onChange={e => update('category', e.target.value)}
               placeholder="e.g., Running Shoes, Kitchen Appliances"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
         </div>
@@ -195,153 +195,153 @@ export default function ProductForm({ onSubmit, loading, initialData }: ProductF
       <button
         type="button"
         onClick={() => setShowAdvanced(!showAdvanced)}
-        className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+        className="flex items-center gap-2 text-sm text-nimbus-600 hover:text-nimbus-700 transition-colors"
       >
         {showAdvanced ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         {showAdvanced ? 'Hide' : 'Show'} advanced fields ({showAdvanced ? 'fewer' : 'more'} = higher score)
       </button>
 
       {showAdvanced && (
-        <div className="space-y-4 pl-4 border-l-2 border-white/10">
+        <div className="space-y-4 pl-4 border-l-2 border-gray-100">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Materials</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Materials</label>
               <input
                 type="text"
                 value={product.materials || ''}
                 onChange={e => update('materials', e.target.value)}
                 placeholder="e.g., 100% organic cotton"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Color</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Color</label>
               <input
                 type="text"
                 value={product.color || ''}
                 onChange={e => update('color', e.target.value)}
                 placeholder="e.g., Midnight Blue"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Size</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Size</label>
               <input
                 type="text"
                 value={product.size || ''}
                 onChange={e => update('size', e.target.value)}
                 placeholder="e.g., Large, 10, 32x30"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Weight</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Weight</label>
               <input
                 type="text"
                 value={product.weight || ''}
                 onChange={e => update('weight', e.target.value)}
                 placeholder="e.g., 10.2 oz, 500g"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Dimensions</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Dimensions</label>
               <input
                 type="text"
                 value={product.dimensions || ''}
                 onChange={e => update('dimensions', e.target.value)}
                 placeholder="e.g., 12 x 8 x 4 inches"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">SKU</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">SKU</label>
               <input
                 type="text"
                 value={product.sku || ''}
                 onChange={e => update('sku', e.target.value)}
                 placeholder="e.g., PROD-001"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Use Cases</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Use Cases</label>
             <input
               type="text"
               value={product.useCases || ''}
               onChange={e => update('useCases', e.target.value)}
               placeholder="e.g., trail running, hiking, outdoor activities"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Care Instructions</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Care Instructions</label>
             <input
               type="text"
               value={product.careInstructions || ''}
               onChange={e => update('careInstructions', e.target.value)}
               placeholder="e.g., Machine wash cold, tumble dry low"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">GTIN / UPC / EAN</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">GTIN / UPC / EAN</label>
             <input
               type="text"
               value={product.gtin || ''}
               onChange={e => update('gtin', e.target.value)}
               placeholder="e.g., 0123456789012"
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Shipping Timeline</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Shipping Timeline</label>
               <input
                 type="text"
                 value={product.shippingTimeline || ''}
                 onChange={e => update('shippingTimeline', e.target.value)}
                 placeholder="e.g., 2-3 business days"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Return Window</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Return Window</label>
               <input
                 type="text"
                 value={product.returnWindow || ''}
                 onChange={e => update('returnWindow', e.target.value)}
                 placeholder="e.g., 30 days"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Return Policy</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Return Policy</label>
             <textarea
               value={product.returnPolicy || ''}
               onChange={e => update('returnPolicy', e.target.value)}
               placeholder="e.g., Full refund within 30 days. Items must be unused with original packaging."
               rows={2}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-y"
+              className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500 resize-y"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Average Rating (1-5)</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Average Rating (1-5)</label>
               <input
                 type="number"
                 step="0.1"
@@ -350,17 +350,17 @@ export default function ProductForm({ onSubmit, loading, initialData }: ProductF
                 value={product.averageRating || ''}
                 onChange={e => update('averageRating', parseFloat(e.target.value) || 0)}
                 placeholder="4.5"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Review Count</label>
+              <label className="block text-sm font-medium text-gray-900 mb-1">Review Count</label>
               <input
                 type="number"
                 value={product.reviewCount || ''}
                 onChange={e => update('reviewCount', parseInt(e.target.value) || 0)}
                 placeholder="42"
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-nimbus-500 focus:ring-1 focus:ring-nimbus-500"
               />
             </div>
           </div>
@@ -372,7 +372,7 @@ export default function ProductForm({ onSubmit, loading, initialData }: ProductF
         <button
           type="submit"
           disabled={loading || !product.title}
-          className="flex-1 py-3 px-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-3 px-6 rounded-lg bg-nimbus-600 text-white font-semibold hover:bg-nimbus-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Analyzing...' : 'Score My Product'}
         </button>
